@@ -10,8 +10,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build docker_compose
         run: docker-compose up -d --build
-      - name: Build application
-        run: docker-compose exec nodejs yarn build
   #deploy:
   #  needs: build
   #  runs-on: ubuntu-latest
