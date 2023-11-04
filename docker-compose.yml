@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  nodejs:
+    image: nodejs
+    restart: unless-stopped
+    container_name: nodejs
+    depends_on:
+      - postgres
+    build:
+      context: .
+      dockerfile: Dockerfile
