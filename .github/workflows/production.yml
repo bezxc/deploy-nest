@@ -47,8 +47,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           envs: GITHUB_USERNAME, GITHUB_TOKEN
           script: |
-            docker login ghcr.io -u bezxc -p $GITHUB_TOKEN
-            cd ${{ secrets.WORK_DIR }} && docker compose pull && docker compose up -d && exit
+            cd ${{ secrets.WORK_DIR }} && docker login ghcr.io -u bezxc -p $GITHUB_TOKEN && docker compose pull && docker compose up -d && exit
 
       # steps:
       # - name: install ssh keys
