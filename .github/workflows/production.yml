@@ -27,7 +27,6 @@ jobs:
     deploy:
         needs: publish
         name: Deploy image
-        uses: webfactory/ssh-agent@v0.8.0
         runs-on: ubuntu-latest
 
         steps:
