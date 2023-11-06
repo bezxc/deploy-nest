@@ -2,8 +2,6 @@ version: '3'
 
 services:
   nodejs:
+    image: ghcr.io/bezxc/nest-deploy:latest
     restart: unless-stopped
     container_name: nodejs
-    build:
-      context: .
-      dockerfile: Dockerfile
