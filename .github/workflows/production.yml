@@ -11,7 +11,7 @@ env:
 
 jobs:
     publish:
-        name: publish image
+        name: Build and push image
         runs-on: ubuntu-latest
 
         steps:
@@ -26,11 +26,12 @@ jobs:
 
     deploy:
         needs: publish
-        name: deploy image
+        name: Deploy image
+        uses: webfactory/ssh-agent@v0.8.0
         runs-on: ubuntu-latest
 
         steps:
-        - name: install ssh keys
+        - name: Install ssh keys
           # check this thread to understand why its needed:
           # <https://stackoverflow.com/a/70447517>
           run: |
