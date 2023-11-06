@@ -2,7 +2,6 @@ version: '3'
 
 services:
   nodejs:
-    image: nodejs
     restart: unless-stopped
     container_name: nodejs
     build:
