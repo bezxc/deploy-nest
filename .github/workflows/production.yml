@@ -32,6 +32,12 @@ jobs:
         GITHUB_USERNAME: bezxc
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       steps:
+      - name: login to ghcr 
+        uses: docker/login-action@v1  
+        with: 
+          registry: ghcr.io 
+          username: bezxc
+          password: ${{ secrets.PAT }}
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
