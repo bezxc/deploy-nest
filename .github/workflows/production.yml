@@ -11,7 +11,7 @@ env:
 
 jobs:
     publish:
-        name: Build and push image
+        name: Build and push image stage
         runs-on: ubuntu-latest
 
         steps:
@@ -24,8 +24,8 @@ jobs:
             docker build . --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
             docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-    run_pull:
-      name: run pull
+    deploy:
+      name: Deploy stage
       runs-on: ubuntu-latest
       needs: publish
 
@@ -38,6 +38,6 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
       - name: connect and pull
-        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && docker compose pull && docker compose up -d && exit"
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && docker login ghcr.io -u ${{ github.actor }} --password-stdin && docker compose pull && docker compose up -d && exit"
       - name: cleanup
         run: rm -rf ~/.ssh
