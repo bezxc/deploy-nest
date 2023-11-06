@@ -32,15 +32,15 @@ jobs:
         uses: appleboy/ssh-action@master
           env:
             GITHUB_USERNAME: bezxc
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.PAT }}
           with:
             host: ${{ secrets.SSH_HOST }}
             port: 22
             username: ${{ secrets.SSH_USER }}
             key: ${{ secrets.SSH_KEY }}
             envs: GITHUB_USERNAME, GITHUB_TOKEN
-          script: |
-            docker login ghcr.io -u bezxc -p $GITHUB_TOKEN
+            script: |
+              docker login ghcr.io -u bezxc -p $GITHUB_TOKEN
 
       # steps:
       # - name: install ssh keys
